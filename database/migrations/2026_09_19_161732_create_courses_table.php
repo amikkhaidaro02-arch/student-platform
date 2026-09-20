@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
+            $table->string('title');                  // Название курса
+            $table->text('description')->nullable();  // Описание курса
+            $table->string('code')->unique();         // Уникальный код курса (например, "CS-101")
+            $table->string('image_path')->nullable(); // Путь к обложке (картинке)
+            $table->foreignId('teacher_id')->constrained('users')->onDelete('cascade'); // Преподаватель
             $table->timestamps();
         });
     }
